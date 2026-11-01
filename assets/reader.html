@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <title>{{TITLE}} · ReadZine</title>
+  <style>{{CSS}}</style>
+</head>
+<body data-style="{{STYLE}}">
+  <!-- READZINE_TEMPLATE_ONLY_START -->
+  <style>body>:not(#template-notice){display:none!important}#template-notice{max-width:640px;margin:12vh auto;padding:32px;font:16px/1.9 system-ui;color:#302c25;background:#f1ecdf}</style>
+  <section id="template-notice"><h1>这是源模板，不能直接预览</h1><p>请打开生成后的 <code>outputs/&lt;主题&gt;/magazine.html</code>，或使用已启动的局域网预览地址。</p><p><code>skills/readzine/assets/reader.html</code> 中的占位符需要经过生成器组装，不能作为阅读成品交付。</p></section>
+  <!-- READZINE_TEMPLATE_ONLY_END -->
+  <header class="masthead"><span class="brand">ReadZine<span class="brand-dot">.</span></span><span class="masthead-note">A little space for a deeper read.</span><button id="help-trigger" class="quiet-button" aria-label="使用说明" lang="zh-CN">? <span>使用说明</span></button><button id="home" hidden>← Cover</button></header>
+  <main id="cover" aria-label="杂志封面">
+    <div class="cover-layout">
+      <div class="cover-topic eyebrow">{{TOPIC}}</div>
+      <h1 class="cover-title" lang="en" data-translation="title" tabindex="0">{{TITLE}}</h1>
+      <div class="cover-copy"><p class="subtitle" data-translation="subtitle" tabindex="0">{{SUBTITLE}}</p><p class="intro" data-translation="intro" tabindex="0">{{INTRO}}</p><button id="start" class="start">Start reading <span aria-hidden="true">↗</span></button><button id="phone-trigger" class="phone-trigger">Read on phone <span aria-hidden="true">▧</span></button></div>
+      <figure class="cover-figure">{{COVER_IMAGE}}<figcaption>{{COVER_CAPTION}}</figcaption></figure>
+    </div>
+    <footer class="cover-footer"><span>ENGLISH WORDS, WIDER WORLDS.</span><span>A CLOSER LOOK AT THE WORLD.</span></footer>
+  </main>
+  <main id="reader" hidden aria-label="文章阅读">
+    <div class="reading-layout"><aside class="topic-rail eyebrow">{{TOPIC}}</aside><article class="article" lang="en">
+      {{BEFORE_TITLE}}
+      <header class="article-heading"><div class="eyebrow article-topic">{{TOPIC}}</div><h1 id="article-title" tabindex="0" data-translation="title">{{TITLE}}</h1><p class="subtitle" data-translation="subtitle" tabindex="0">{{SUBTITLE}}</p></header>
+      <div id="prose">{{PROSE}}</div>
+      <footer class="article-source"><p>Source: {{SOURCE}}</p><p>The subtitle, introduction and translations are editorial additions.</p><details class="credits"><summary>Dictionary &amp; credits</summary><p>Definitions: <a href="https://github.com/skywind3000/ECDICT" target="_blank" rel="noopener noreferrer">ECDICT English–Chinese Dictionary</a>. Context notes supplied by the editor.</p><p>QR Code generator: Kazuhiko Arase, MIT License. Copyright © 2009 Kazuhiko Arase. The MIT permission and warranty terms below also apply to the bundled QR generator.</p><pre>{{LICENSE}}</pre></details></footer>
+    </article></div>
+    <button id="drawer-trigger" class="drawer-trigger" aria-controls="drawer" aria-expanded="false">Sentence notes <span>{{COUNT}}</span></button>
+  </main>
+  <div id="backdrop" hidden></div>
+  <aside id="drawer" role="dialog" aria-labelledby="drawer-title" hidden tabindex="-1">
+    <header class="drawer-heading"><div><span class="eyebrow">READ BETWEEN THE LINES</span><h2 id="drawer-title">句子解析 <span>{{COUNT}}</span></h2></div><button id="close-drawer" aria-label="关闭句子解析">×</button></header>
+    <div id="analysis-list">{{ANALYSES}}</div>
+  </aside>
+  <aside id="wordcard" role="dialog" aria-label="单词释义" hidden>
+    <button id="close-word" aria-label="关闭单词释义">×</button><h2 id="word-title" lang="en"></h2><p id="word-form" class="muted"></p><p id="word-phonetic" lang="en"></p><p id="word-pos" lang="en"></p><div id="word-definition"></div><div id="word-context" hidden><h3>本文语境义 · 编者补充</h3><p></p></div>
+  </aside>
+  <div id="status" class="sr-only" role="status" aria-live="polite"></div>
+  <aside id="translation-card" role="dialog" aria-labelledby="translation-title" lang="zh-CN" hidden><button id="close-translation" aria-label="关闭译文">×</button><h2 id="translation-title"></h2><p id="translation-text"></p></aside>
+  <dialog id="help-dialog" class="utility-dialog" aria-labelledby="help-title" lang="zh-CN"><button class="dialog-close" data-close="help-dialog" aria-label="关闭使用说明">×</button><span class="eyebrow">阅读操作指南</span><h2 id="help-title">使用说明</h2><dl><dt>在电脑上</dt><dd>选中一个单词查看释义。在段落、标题或导语上按住鼠标左键约半秒，可查看中文译文；松开后译文会保留，点击浮层外或右上角的叉关闭。拖动鼠标可选中文字。</dd><dt>在手机上</dt><dd>轻点单词查看释义。长按文字查看译文，松开后译文会保留；点击浮层外或右上角的叉关闭。滑动手指可滚动页面，移动手指会取消长按。</dd><dt>查看句子解析</dt><dd>点击 S01、S02 等编号，查看句子译文和结构解析。点击关闭按钮，或按 Esc 键返回阅读。</dd><dt>使用键盘</dt><dd>按 Tab 键将焦点移到标题或段落，再按空格键查看译文，松开后仍会保留。按 Esc 键可关闭词卡或解析面板。</dd></dl></dialog>
+  <dialog id="phone-dialog" class="utility-dialog phone-dialog" aria-labelledby="phone-title" lang="zh-CN"><button class="dialog-close" data-close="phone-dialog" aria-label="关闭手机阅读">×</button><span class="eyebrow">把文章带到手机上</span><h2 id="phone-title">在手机上阅读</h2><div id="phone-qr" aria-label="本文的手机阅读二维码"></div><p id="phone-message">请将手机和电脑连接到同一个 Wi-Fi，然后用手机相机扫描二维码。</p><a id="phone-url" target="_blank" rel="noopener"></a><p class="sharing-note">请保持电脑唤醒，并让本地分享服务持续运行。若地址发生变化，请重新运行 HTML 文件同目录下的 <strong>Read on phone.command</strong>，再刷新此页面。访客 Wi-Fi 或设备隔离设置可能导致无法连接。</p></dialog>
+  <noscript><p class="noscript">请在浏览器中允许 JavaScript，以使用阅读、查词与句子解析。</p></noscript>
+  <script id="readzine-data" type="application/json">{{DATA}}</script>
+  <script>{{JS}}</script>
+</body>
+</html>
